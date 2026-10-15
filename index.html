@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Piah · 문피아</title>
+<meta name="description" content="Moon Piah — designer, founder of GreenOceans, host of Pluto Art House.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Archivo:wdth,wght@62..125,400;62..125,600;62..125,800;62..125,900&family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f1eee8;--ink:#0d0d0d;--blue:#1d36ff;--orange:#ff6a1a;--grey:#8a8780;--rule:rgba(13,13,13,.18)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{background:var(--paper);color:var(--ink);font-family:Archivo,"Noto Sans KR",system-ui,sans-serif;font-stretch:100%;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body.lang-ko .en,body.lang-en .ko{display:none !important}
+  a{color:inherit}
+  ::selection{background:var(--blue);color:#fff}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+  .cap{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+  .serif{font-family:"Bodoni Moda","Noto Serif KR",serif}
+
+  /* top bar */
+  .bar{position:fixed;inset:0 0 auto 0;z-index:40;color:var(--ink);background:rgba(241,238,232,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{width:34px;height:34px;flex-shrink:0;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+  .brand:hover .logo{transform:rotate(-18deg) scale(1.1)}
+  .bar .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+  .bar nav{display:flex;gap:clamp(12px,2.4vw,30px);align-items:center}
+  .bar a{text-decoration:none}
+  .bar a:hover{text-decoration:underline;text-underline-offset:4px}
+  .lang{background:none;border:1px solid var(--ink);color:var(--ink);font:600 .72rem Archivo,sans-serif;letter-spacing:.14em;padding:6px 10px;cursor:pointer}
+  @media(max-width:620px){.bar .hide-sm{display:none}}
+
+  /* hero */
+  .hero{min-height:100vh;padding-top:70px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+  .giant{font-family:Archivo,sans-serif;font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.8;letter-spacing:-.01em;
+         font-size:clamp(6rem,27vw,26rem);white-space:nowrap;position:relative;z-index:1}
+  .g1{margin-top:2vh}
+  .g2{text-align:right}
+  .hero-photo{position:absolute;z-index:2;left:50%;top:52%;transform:translate(-50%,-50%);width:clamp(220px,30vw,420px);aspect-ratio:346/410;overflow:hidden;background:#f9b9c9}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+  .hero-photo:hover img{transform:scale(1.05) rotate(-1.5deg)}
+  .orb{aspect-ratio:1;border-radius:50%;border:0;padding:0;cursor:pointer;background:none;overflow:visible}
+  .orb .core{position:absolute;inset:0;border-radius:50%;background:var(--blue);transition:background .6s cubic-bezier(.2,.7,.2,1)}
+  .orb.on .core{background:var(--orange)}
+  .orb:focus-visible{outline:2px solid var(--ink);outline-offset:8px}
+  .orb::after{border-radius:50%}
+  .hero-photo::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;
+     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:18px 0 26px;border-top:1px solid var(--ink);position:relative;z-index:4;background:var(--paper)}
+  .meta div{font-size:.86rem}
+  .meta b{display:block;font-weight:600}
+  @media(max-width:760px){.meta{grid-template-columns:repeat(2,1fr)}.giant{font-size:41vw}.g1{margin-top:4vh}.hero-photo{top:47%;width:62vw}}
+
+  /* ticker */
+  .ticker{border-block:1px solid var(--ink);overflow:hidden}
+  .ticker .t{display:flex;width:max-content;animation:tick 40s linear infinite}
+  .ticker span{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(1.3rem,3vw,2.2rem);padding:14px 26px;white-space:nowrap}
+  .ticker span.dot{font-style:normal;color:var(--blue);padding:14px 0}
+  @keyframes tick{to{transform:translateX(-50%)}}
+
+  /* section scaffolding */
+  section{padding:clamp(80px,12vw,160px) 0 0}
+  .shead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:12px;margin-bottom:clamp(30px,5vw,60px)}
+  .shead .no{font-family:"Bodoni Moda",serif;font-size:1.1rem}
+
+  /* statement */
+  .statement{font-family:"Bodoni Moda","Noto Serif KR",serif;font-weight:400;font-size:clamp(2rem,5.4vw,5.2rem);line-height:1.04;letter-spacing:-.02em;max-width:1200px}
+  .statement em{color:var(--blue)}
+  .ko .statement,.statement.ko{font-size:clamp(1.8rem,4.6vw,4.4rem);line-height:1.2;letter-spacing:-.04em}
+  .dae{display:block;margin-top:.35em;font-family:Archivo,sans-serif;font-stretch:62%;font-weight:900;text-transform:uppercase;letter-spacing:-.005em;font-size:1.5em;line-height:.95}
+  .dae b{color:var(--blue);font-weight:900}
+  .dae i{font-style:normal;font-family:"Bodoni Moda",serif;font-stretch:100%;font-weight:400;font-style:italic;text-transform:none;font-size:.42em;letter-spacing:0;color:var(--ink)}
+  .dae u{text-decoration:none;color:var(--orange);margin:0 .22em 0 .04em}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);margin-top:clamp(40px,6vw,80px)}
+  .two p{font-size:1.02rem;max-width:520px}
+  @media(max-width:760px){.two{grid-template-columns:1fr}}
+  .chapters{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);margin-top:clamp(40px,6vw,80px)}
+  .chapters div{padding:22px 22px 22px 0;border-right:1px solid var(--rule)}
+  .chapters div+div{padding-left:22px}
+  .chapters div:last-child{border-right:0}
+  .chapters .n{font-family:"Bodoni Moda",serif;font-style:italic;font-size:3rem;line-height:1;color:var(--blue)}
+  .chapters h3{font-weight:800;font-stretch:80%;text-transform:uppercase;font-size:1.3rem;margin:10px 0 6px;letter-spacing:.01em}
+  .chapters p{font-size:.92rem;color:#3a3936}
+  @media(max-width:760px){.chapters{grid-template-columns:1fr}.chapters div,.chapters div+div{border-right:0;border-bottom:1px solid var(--rule);padding:20px 0}}
+
+  /* work rows */
+  .row{display:grid;grid-template-columns:120px 1fr 1fr;gap:clamp(16px,3vw,40px);padding:clamp(28px,4vw,50px) 0;border-bottom:1px solid var(--ink);align-items:start;position:relative}
+  .row .yr{font-size:.86rem;font-weight:600}
+  .row h3{font-family:Archivo,sans-serif;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(3rem,8vw,7.4rem);line-height:.86;letter-spacing:-.005em;transition:color .3s}
+  .row h3 small{display:block;font-family:"Noto Sans KR",sans-serif;font-weight:500;font-stretch:100%;font-size:.95rem;letter-spacing:0;margin-top:10px;text-transform:none;color:var(--grey)}
+  .row:hover h3{color:var(--blue)}
+  .row p{font-size:1rem;max-width:480px}
+  .row .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .row .tags span{border:1px solid var(--ink);padding:3px 10px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .row a.go{display:inline-block;margin-top:18px;font-weight:600;font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;text-underline-offset:5px}
+  @media(max-width:860px){.row{grid-template-columns:1fr}}
+
+  /* education */
+  .edu{list-style:none}
+  .edu li{display:grid;grid-template-columns:140px 1fr auto;gap:20px;padding:22px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .edu .y{font-family:"Bodoni Moda",serif;font-style:italic;font-size:1.5rem;color:var(--blue)}
+  .edu h3{font-family:"Bodoni Moda","Noto Serif KR",serif;font-weight:400;font-size:clamp(1.3rem,2.8vw,2.2rem);line-height:1.15}
+  .edu .s{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--grey)}
+  @media(max-width:700px){.edu li{grid-template-columns:1fr}.edu .s{order:-1}}
+
+  /* awards — big type */
+  .awards{list-style:none}
+  .awards li{display:flex;justify-content:space-between;gap:20px;align-items:baseline;border-bottom:1px solid var(--ink);padding:20px 0}
+  .awards h3{font-weight:800;font-stretch:75%;text-transform:uppercase;font-size:clamp(1.6rem,4.4vw,3.6rem);line-height:.95;letter-spacing:-.005em}
+  .awards .ko h3,.awards h3.ko{font-family:"Noto Sans KR",sans-serif;font-stretch:100%;letter-spacing:-.04em}
+  .awards .y{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(1.2rem,2.4vw,2rem);color:var(--blue);flex-shrink:0}
+
+  /* press/talks */
+  .tabs{display:flex;gap:26px;margin-bottom:10px}
+  .tab{background:none;border:0;cursor:pointer;font-family:"Bodoni Moda","Noto Serif KR",serif;font-size:clamp(1.6rem,3.6vw,2.8rem);color:var(--grey);padding:0;transition:color .2s}
+  .tab[aria-selected="true"]{color:var(--ink);font-style:italic}
+  .tab .c{font-family:Archivo,sans-serif;font-size:.8rem;vertical-align:super;margin-left:4px;font-style:normal}
+  .panel[hidden]{display:none}
+  .list{list-style:none;border-top:1px solid var(--ink)}
+  .list li{display:grid;grid-template-columns:90px 1fr 160px;gap:16px;padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline;font-size:.95rem;transition:padding .25s,color .25s}
+  .list li:hover{padding-left:14px;color:var(--blue)}
+  .list .d{font-variant-numeric:tabular-nums;font-weight:600}
+  .list .t{font-family:"Noto Sans KR",sans-serif}
+  .list .s{text-align:right;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--grey)}
+  @media(max-width:640px){.list li{grid-template-columns:62px 1fr}.list .s{grid-column:2;text-align:left}}
+
+  /* contact */
+  .contact{background:var(--ink);color:var(--paper);margin-top:0;padding:clamp(60px,10vw,130px) 0 40px}
+  .contact .cap{color:var(--grey)}
+  .contact h2{font-family:"Bodoni Moda","Noto Serif KR",serif;font-weight:400;font-size:clamp(2.2rem,6vw,5.6rem);line-height:1.02;letter-spacing:-.02em;margin:18px 0 40px}
+  .contact h2 em{color:#7d8bff}
+  .mail{display:block;font-family:Archivo,sans-serif;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(1.5rem,4vw,3.2rem);line-height:1;text-decoration:none;word-break:break-all;display:inline-block;border-bottom:2px solid currentColor;padding-bottom:4px;transition:color .3s}
+  .mail:hover{color:#7d8bff}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:70px;padding-top:16px;border-top:1px solid rgba(241,238,232,.25);font-size:.78rem;color:var(--grey)}
+  .foot a{color:var(--paper)}
+
+  /* sea waves */
+  .waves{position:absolute;inset:0;z-index:0;pointer-events:none;width:100%;height:100%}
+  .waves path{fill:none;stroke:var(--blue);stroke-width:1}
+  .waveband{display:block;width:100%;height:clamp(90px,12vw,150px);margin-top:clamp(70px,10vw,130px)}
+  .waveband path{fill:none;stroke:var(--blue);stroke-width:1.4}
+  /* logo watermark */
+  .contact{position:relative;overflow:hidden}
+  .mark{color:#7d8bff;position:absolute;right:clamp(16px,4vw,48px);top:clamp(40px,6vw,80px);width:clamp(64px,9vw,120px);opacity:.9;animation:turn 40s linear infinite;pointer-events:none}
+  .mark path{stroke:#7d8bff}
+  @keyframes turn{to{transform:rotate(360deg)}}
+  @media(max-width:620px){.mark{top:24px;width:48px}}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.ticker .t,.mark{animation:none}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body class="lang-ko">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="shell" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 41 C5 26 16 9 32 7 C48 5 59 18 57 32 C55 48 41 59 26 57 C17 56 11 50 9 41 Z"/>
+      <path d="M15 41 C12 29 21 16 33 14 C45 13 52 23 51 33 C50 43 41 50 31 50"/>
+      <path d="M21 42 C19 33 26 23 34 22 C42 21 46 28 45 34 C44 40 39 44 33 44"/>
+      <path d="M27 43 C26 37 30 31 35 30 C39 30 40 34 39 37"/>
+      <path d="M9 41 Q12 50 19 53"/>
+    </g>
+    <circle cx="35.5" cy="38" r="3.6" fill="#ff6a1a"/>
+  </symbol>
+</svg>
+
+<header class="bar">
+  <div class="wrap">
+    <a href="#top" class="cap brand"><svg class="logo" style="color:var(--blue)"><use href="#shell"/></svg><span>Moon Piah</span></a>
+    <nav class="cap">
+      <a href="#about" class="hide-sm"><span class="ko">소개</span><span class="en">About</span></a>
+      <a href="#work"><span class="ko">작업</span><span class="en">Work</span></a>
+      <a href="#record" class="hide-sm"><span class="ko">기록</span><span class="en">Record</span></a>
+      <a href="#contact"><span class="ko">연락</span><span class="en">Contact</span></a>
+      <button class="lang" id="lang">EN</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <svg class="waves" id="heroWaves" preserveAspectRatio="none"></svg>
+  <div class="wrap"><div class="giant g1">Moon</div></div>
+  <button class="hero-photo orb" id="hp" aria-label="Color ball — click to change color" aria-pressed="false"><span class="core"></span></button>
+  <div class="wrap">
+    <div class="giant g2">Piah</div>
+    <div class="meta">
+      <div><span class="cap">Name</span><b>문피아 / Moon Piah</b></div>
+      <div><span class="cap">Role</span><b>Designer · Artist · Entrepreneur</b></div>
+      <div><span class="cap">Based</span><b><span class="ko">서울 — 통영</span><span class="en">Seoul — Tongyeong</span></b></div>
+      <div><span class="cap">Now</span><b>KAIST Impact MBA</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker" aria-hidden="true"><div class="t">
+  <span>What the sea leaves behind</span><span class="dot">●</span><span>Product Design</span><span class="dot">●</span><span>Oyster Shells</span><span class="dot">●</span><span>Smart Design Engineering</span><span class="dot">●</span><span>Playwriting</span><span class="dot">●</span><span>Impact</span><span class="dot">●</span>
+  <span>What the sea leaves behind</span><span class="dot">●</span><span>Product Design</span><span class="dot">●</span><span>Oyster Shells</span><span class="dot">●</span><span>Smart Design Engineering</span><span class="dot">●</span><span>Playwriting</span><span class="dot">●</span><span>Impact</span><span class="dot">●</span>
+</div></div>
+
+<!-- ABOUT -->
+<section id="about" class="wrap reveal">
+  <div class="shead"><span class="cap"><span class="ko">소개</span><span class="en">About</span></span><span class="no">— 01</span></div>
+  <p class="statement en">Giving value to what was thrown away — <span class="dae"><b>D</b><i>esigner</i><u>.</u><b>A</b><i>rtist</i><u>.</u><b>E</b><i>ntrepreneur</i></span></p>
+  <p class="statement ko">버려진 것들에 가치를 입히는 <span class="dae"><b>D</b><i>esigner</i><u>.</u><b>A</b><i>rtist</i><u>.</u><b>E</b><i>ntrepreneur</i></span></p>
+  <div class="two">
+    <p class="ko">극작을 배우며 모든 사물에 서사가 있다는 걸 알았고, 디자인을 공부하며 그 서사를 제품과 시스템으로 바꾸는 법을 익혔습니다. 지금은 국내 최대 굴 생산지 통영에서 버려지는 굴 껍데기로 그 일을 합니다.</p>
+    <p class="en">Playwriting taught me that every object carries a narrative. Design taught me to turn that narrative into products and systems. Today I do it with the oyster shells discarded in Tongyeong, Korea's largest oyster region.</p>
+    <p class="ko">그린오션스의 대표로, 플루토 아트 하우스의 호스트로, 그리고 KAIST Impact MBA에서 임팩트와 비즈니스가 같은 곡선 위에서 성장하는 방법을 배우고 있습니다.</p>
+    <p class="en">As CEO of GreenOceans, host of Pluto Art House, and now a KAIST Impact MBA student, I'm learning how impact and business can grow on the same curve.</p>
+  </div>
+  <div class="chapters">
+    <div><span class="n">i.</span><h3><span class="ko">이야기</span><span class="en">Story</span></h3><p class="ko">서울예술대학교 극작과</p><p class="en">Playwriting, Seoul Institute of the Arts</p></div>
+    <div><span class="n">ii.</span><h3><span class="ko">디자인</span><span class="en">Design</span></h3><p class="ko">홍익대 프로덕트 디자인 · 스마트디자인공학</p><p class="en">Product Design · Smart Design Engineering, Hongik</p></div>
+    <div><span class="n">iii.</span><h3><span class="ko">임팩트</span><span class="en">Impact</span></h3><p class="ko">그린오션스 창업 · KAIST Impact MBA</p><p class="en">GreenOceans · KAIST Impact MBA</p></div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="wrap reveal">
+  <div class="shead"><span class="cap"><span class="ko">작업</span><span class="en">Work</span></span><span class="no">— 02</span></div>
+  <div class="row">
+    <div class="yr">2021 — <span class="ko">현재</span><span class="en">Now</span></div>
+    <h3>Green<br>Oceans<small><span class="ko">대표이사 · 그린오션스</span><span class="en">CEO & Founder</span></small></h3>
+    <div>
+      <p class="ko">수산 부산물을 친환경 소재로 바꾸는 클린테크 스타트업. 통영에서 버려지는 굴 껍데기를 건축 소재, 탄소 크레딧, 친환경 완구, 코스메틱으로 업사이클링합니다.</p>
+      <p class="en">A cleantech startup turning seafood by-products into sustainable materials — upcycling Tongyeong's discarded oyster shells into building materials, carbon credits, eco-friendly toys and cosmetics.</p>
+      <div class="tags"><span>Material</span><span>Carbon</span><span>Product</span><span>Wellness</span></div>
+      <a class="go" href="https://www.greenoceans.kr" target="_blank" rel="noopener">greenoceans.kr ↗</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="yr">2016 — <span class="ko">현재</span><span class="en">Now</span></div>
+    <h3>Pluto<br>Art House<small><span class="ko">대표 · 플루토 아트 하우스</span><span class="en">Founder & Host</span></small></h3>
+    <div>
+      <p class="ko">머무는 경험 자체를 디자인하는 숙박 브랜드.</p>
+      <p class="en">A lodging brand where the stay itself is the design.</p>
+      <div class="tags"><span>Hospitality</span><span>Space</span><span>Brand</span></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="yr">2019</div>
+    <h3>Global<br>D.Startup<small><span class="ko">디자이너 · 홍익대학교</span><span class="en">Designer, Hongik University</span></small></h3>
+    <div>
+      <p class="ko">홍익대학교 글로벌 D.스타트업 디자이너로 참여.</p>
+      <p class="en">Designer for Hongik University's Global D.Startup program.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="wrap reveal">
+  <div class="shead"><span class="cap"><span class="ko">수상</span><span class="en">Awards</span></span><span class="no">— 03</span></div>
+  <ul class="awards">
+    <li><h3><span class="ko">까르띠에 여성 창업가 이니셔티브 아시아 Top 10 노미네이트</span><span class="en">Cartier Women's Initiative — Asia Top 10 Nominee</span></h3><span class="y">2025</span></li>
+    <li><h3><span class="ko">해양수산부 장관상</span><span class="en">Minister's Award, Ministry of Oceans & Fisheries</span></h3><span class="y">2024</span></li>
+    <li><h3><span class="ko">여성창업대전 입상</span><span class="en">Women's Startup Competition — Award</span></h3><span class="y">2024</span></li>
+  </ul>
+</section>
+
+<!-- PRESS & TALKS -->
+<section id="record" class="wrap reveal">
+  <div class="shead"><span class="cap"><span class="ko">기록</span><span class="en">On Record</span></span><span class="no">— 04</span></div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-panel="p-press"><span class="ko">언론</span><span class="en">Press</span><span class="c">18</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="p-talks"><span class="ko">강연</span><span class="en">Talks</span><span class="c">11</span></button>
+  </div>
+  <div class="panel" id="p-press"><ul class="list">
+    <li><span class="d">26.01</span><span class="t">〈자랑스러운 부산경남〉 남해안이 품은 보석, 굴</span><span class="s">KNN</span></li>
+    <li><span class="d">25.11</span><span class="t">경희대 산업디자인학과 창업팀, 굴 껍데기로 지속 가능 디자인의 새 지평을 열다</span><span class="s">중앙일보</span></li>
+    <li><span class="d">25.10</span><span class="t">어촌어항공단, '굴 최대 생산지' 통영 지역 축제 참여</span><span class="s">부산일보</span></li>
+    <li><span class="d">25.04</span><span class="t">굴 껍데기의 화려한 변신… 장관상 받은 '친환경' 스타트업</span><span class="s">중앙일보</span></li>
+    <li><span class="d">25.02</span><span class="t">"청년이 꿈꾸고 도전하는 지역 되길"</span><span class="s">한산신문</span></li>
+    <li><span class="d">24.12</span><span class="t">'2024 통영수산식품대전' 통영수산물 우수성 홍보</span><span class="s">뉴스경남</span></li>
+    <li><span class="d">24.07</span><span class="t">여성 창업가들 한자리에… '제25회 여성창업경진대회' 성료</span><span class="s">여성신문</span></li>
+    <li><span class="d">24.05</span><span class="t">[코리아스타트업포럼과 함께하는 스타트업의 미래] 문피아 그린오션스 대표</span><span class="s">청년일보</span></li>
+    <li><span class="d">24.03</span><span class="t">버려진 굴 껍데기로 친환경 소재를 만든 스타트업</span><span class="s">바이라인네트워크</span></li>
+    <li><span class="d">24.02</span><span class="t">2024 수산부산물 국제포럼 성료, '부산물' 아닌 '부위'로서의 인식전환 필요</span><span class="s">현대해양</span></li>
+    <li><span class="d">23.12</span><span class="t">수산부산물전문가포럼 개최</span><span class="s">아시아투데이</span></li>
+    <li><span class="d">23.11</span><span class="t">경상국립대 '경남 패류부산물 효율적 활용방안 위한 심층 토론회'</span><span class="s">통영신문</span></li>
+    <li><span class="d">23.08</span><span class="t">그린오션스, AFRO "골칫덩어리 굴껍데기 활용 다각화"</span><span class="s">에이빙 뉴스</span></li>
+    <li><span class="d">23.06</span><span class="t">2023 부산 디자인위크</span><span class="s">테넌트 뉴스</span></li>
+    <li><span class="d">22.12</span><span class="t">굴껍데기 재활용 스타트업 '그린오션스'</span><span class="s">매일경제</span></li>
+    <li><span class="d">22.12</span><span class="t">바다에서 버려지는 통영굴 껍질</span><span class="s">서울경제신문</span></li>
+    <li><span class="d">22.12</span><span class="t">지속가능한 디자인이란?</span><span class="s">MBN 뉴스</span></li>
+    <li><span class="d">22.10</span><span class="t">'처치곤란' 굴껍데기</span><span class="s">더나은미래</span></li>
+  </ul></div>
+  <div class="panel" id="p-talks" hidden><ul class="list">
+    <li><span class="d">25.06</span><span class="t">태안 해양바이오공동협력연구소 활성화 포럼 연사</span><span class="s">Speaker</span></li>
+    <li><span class="d">25.02</span><span class="t">경상국립대학교 USG 교양 특강</span><span class="s">Lecture</span></li>
+    <li><span class="d">24.12</span><span class="t">울산 아트페어 ESG 기획 전시 초청 참여</span><span class="s">Exhibition</span></li>
+    <li><span class="d">24.02</span><span class="t">해양수산부 국제 수산부산물 포럼 연사 및 전시 기획</span><span class="s">Speaker</span></li>
+    <li><span class="d">23.12</span><span class="t">해양수산부 국내 수산부산물 포럼 패널</span><span class="s">Panel</span></li>
+    <li><span class="d">23.11</span><span class="t">수산부산물 협의회 · 경남 패류부산물 심층 토론회 패널</span><span class="s">Panel</span></li>
+    <li><span class="d">23.08</span><span class="t">강원디자인진흥원 디자인 특강</span><span class="s">Lecture</span></li>
+    <li><span class="d">23.06</span><span class="t">대한상의 부산 EXPO · 태평양 도서국 정상회의 지지기업 영상 인터뷰</span><span class="s">Interview</span></li>
+    <li><span class="d">23.05</span><span class="t">국제 ESG 협회 · 소비자 광고 협회 연사</span><span class="s">Speaker</span></li>
+    <li><span class="d">23.03</span><span class="t">경희대학교 산업디자인과 연사</span><span class="s">Speaker</span></li>
+    <li><span class="d">22.11</span><span class="t">고려대학교 환경시스템공학과 연사</span><span class="s">Speaker</span></li>
+  </ul></div>
+</section>
+
+<!-- CONTACT -->
+<svg class="waveband" id="band" preserveAspectRatio="none" aria-hidden="true"></svg>
+<footer class="contact" id="contact">
+  <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#shell"/></svg>
+  <div class="wrap">
+    <span class="cap"><span class="ko">연락 — 05</span><span class="en">Contact — 05</span></span>
+    <h2 class="en">Let's make something from <em>what's left behind.</em></h2>
+    <h2 class="ko">버려진 것으로, <em>함께 무언가를.</em></h2>
+    <a class="mail" href="mailto:piamoon@greenoceans.kr">piamoon@greenoceans.kr</a>
+    <div class="foot">
+      <span>© 2026 Moon Piah</span>
+      <a href="https://www.greenoceans.kr" target="_blank" rel="noopener">greenoceans.kr ↗</a>
+      <span>KAIST Impact MBA · GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const body=document.body,btn=document.getElementById('lang');
+  function setLang(l){body.className='lang-'+l;document.documentElement.lang=l;btn.textContent=l==='ko'?'EN':'KR';try{localStorage.setItem('lang',l)}catch(e){}}
+  let saved='ko';try{saved=localStorage.getItem('lang')||'ko'}catch(e){}
+  setLang(saved);
+  btn.addEventListener('click',()=>setLang(body.classList.contains('lang-ko')?'en':'ko'));
+
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+    t.setAttribute('aria-selected','true');
+    document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==t.dataset.panel);
+  }));
+
+  // gentle parallax on hero photo
+  const hp=document.getElementById('hp');
+  addEventListener('scroll',()=>{const y=scrollY;if(y<innerHeight)hp.style.transform=`translate(-50%,calc(-50% + ${y*.25}px))`},{passive:true});
+
+  // sea waves (hero + band)
+  function waveSet(svg,lines,amp,freq,speed){
+    const ps=[];for(let i=0;i<lines;i++){const p=document.createElementNS('http://www.w3.org/2000/svg','path');svg.appendChild(p);ps.push(p)}
+    return t=>{const r=svg.getBoundingClientRect(),W=Math.round(r.width)||1,H=Math.round(r.height)||1;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+      ps.forEach((p,i)=>{const y0=H*(i+1)/(lines+1);let d='';
+        for(let x=0;x<=W;x+=12){const y=y0+Math.sin(x*freq+t*speed+i*.55)*amp*(0.6+0.4*Math.sin(i*1.3));d+=(x?'L':'M')+x+' '+y.toFixed(1)}
+        p.setAttribute('d',d);p.style.opacity=(0.08+0.14*(i%3===0))})}}
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const draws=[waveSet(document.getElementById('heroWaves'),16,14,.006,.6),waveSet(document.getElementById('band'),6,10,.009,.9)];
+  document.querySelectorAll('#band path').forEach(p=>p.dataset.b=1);
+  (function loop(ts){draws.forEach(f=>f(ts/1000));document.querySelectorAll('#band path').forEach(p=>p.style.opacity=.55);if(!reduce)requestAnimationFrame(loop)})(0);
+
+  // ball: blue <-> orange on click
+  hp.addEventListener('click',()=>{const on=hp.classList.toggle('on');hp.setAttribute('aria-pressed',on);
+    hp.querySelector('.core').animate([{transform:'scale(1)'},{transform:'scale(.9)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:600,easing:'ease-out'})});
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
